@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -38,7 +38,7 @@ const App = () => {
     localStorage.setItem("searchHistory", JSON.stringify(updatedHistory));
   };
 
-  const fetchImages = async () => {
+  const fetchImages = useCallback(async () => {
     const API_KEY = "_pk_LFx614VAsvRbuRL1X11lS5Ub8bQUEaVLAw29RGc";
     const url = `https://api.unsplash.com/search/photos?query=${query || "nature"}&page=${page}&client_id=${API_KEY}`;
 
@@ -48,11 +48,11 @@ const App = () => {
     } catch (error) {
       console.error("Erreur lors de la récupération des images :", error);
     }
-  };
+  }, [query, page]);
 
   useEffect(() => {
     fetchImages();
-  }, [page, query]);
+  }, [fetchImages]);
 
   const handleSearch = (e) => {
     e.preventDefault();
