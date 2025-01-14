@@ -1,0 +1,16 @@
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+.masonry-grid {
+  display: flex;
+  margin-left: -15px; /* Adjust for spacing */
+  width: auto;
+}
+
+.masonry-grid_column {
+  padding-left: 15px; /* Adjust for spacing */
+  background-clip: padding-box;
+}
