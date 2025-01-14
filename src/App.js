@@ -52,7 +52,7 @@ const App = () => {
 
   useEffect(() => {
     fetchImages();
-  }, [page]);
+  }, [page, fetchImages]);
 
   const handleSearch = (e) => {
     e.preventDefault();
