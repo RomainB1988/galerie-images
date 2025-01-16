@@ -165,3 +165,14 @@ h4 {
 .toggle-view:hover {
   background: #0056b3;
 }
+
+.title-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.title-link:hover {
+  text-decoration: underline;
+  color: #007bff;
+}

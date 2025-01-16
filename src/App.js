@@ -11,7 +11,7 @@ import "./App.css";
 
 const App = () => {
   const [images, setImages] = useState([]);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("nature");
   const [page, setPage] = useState(1);
   const [favorites, setFavorites] = useState([]);
   const [theme, setTheme] = useState("light");
@@ -40,7 +40,7 @@ const App = () => {
 
   const fetchImages = useCallback(async () => {
     const API_KEY = "_pk_LFx614VAsvRbuRL1X11lS5Ub8bQUEaVLAw29RGc";
-    const url = `https://api.unsplash.com/search/photos?query=${query || "nature"}&page=${page}&client_id=${API_KEY}`;
+    const url = `https://api.unsplash.com/search/photos?query=${query}&page=${page}&client_id=${API_KEY}`;
 
     try {
       const response = await axios.get(url);
@@ -96,7 +96,12 @@ const App = () => {
           <Link to="/favorites" className="toggle-view">
             Favoris
           </Link>
-          <h1>Galerie d'images</h1>
+          <h1>
+            <Link to="/" className="title-link">
+              Galerie d'images
+            </Link>
+          </h1>
+
         </header>
 
         <Routes>
@@ -113,7 +118,11 @@ const App = () => {
                   {searchHistory.map((item, index) => (
                     <button
                       key={index}
-                      onClick={() => setQuery(item)}
+                      onClick={() => {
+                        setQuery(item);
+                        setPage(1);
+                        setImages([]);
+                      }}
                       className="history-item"
                     >
                       {item}
